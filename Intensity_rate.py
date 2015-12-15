@@ -1,7 +1,7 @@
 __author__ = 'vid'
 
 import natsort
-from tkinter import filedialog
+import tkinter as tk
 import os
 import matplotlib.pyplot as plt
 
@@ -40,11 +40,15 @@ def beriTemp(poti):
     return temperatura
 
 
-def risi(xdata, ydata1, ydata2, indeks):
+def risi(xdata, ydata1, ydata2):
     plt.plot(xdata, ydata1)
     plt.plot(xdata, ydata2)
     plt.savefig('/home/vid/IJS/Meritve')  #Test path
 
 
-a = filedialog.askopenfilename(initialdir='/home/vid/IJS/Meritve/1611/')
-beriInt(a)
+root = tk.Tk()
+root.withdraw()
+
+a = tk.filedialog.askopenfilename(initialdir='/home/vid/IJS/Meritve/1611/')
+test = beriInt(a)
+risi(test[0], test[1], test[2])
