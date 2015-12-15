@@ -66,6 +66,23 @@ def povp(data1, data2):
     return povpre
 
 
+def beriParam(potk):
+    cas = []
+    count = []
+
+    with open(potk, 'r') as file:
+        for line in file:
+            cass, tem = line.strip().split(',')
+            cas.append(cass)
+            count.append(tem)
+    return cas, count
+
+def risiPovp(x, y):
+    plt.plot(x, y)
+    plt.xlabel('$Temperature$ $[^{o}C]$', fontsize=22)
+    plt.ylabel('$Average$ $count$ $rate$ $[kHz]$')
+    plt.savefig(pot + '/povprecje.jpg')
+    plt.close
 
 root = tk.Tk()
 root.withdraw()
@@ -75,7 +92,7 @@ seznam  = natsort.natsorted(seznam)
 pot1 = tk.askopenfilename(initialdir=pot)
 tempe = beriTemp(pot1)
 indeks = 0
-risanje = True  #Če True, se za vsako temp izriše graf
+risanje = False  #Če True, se za vsako temp izriše graf
 
 povprecja = open(pot + '/povprecja.txt', 'w')
 
@@ -92,3 +109,5 @@ for a in seznam:
 
 povprecja.close()
 
+da1, da2 = beriParam(pot + '/povprecja.txt')
+risiPovp(da1, da2)
