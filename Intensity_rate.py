@@ -40,10 +40,15 @@ def beriTemp(poti):
     return temperatura
 
 
-def risi(xdata, ydata1, ydata2):
-    plt.plot(xdata, ydata1)
-    plt.plot(xdata, ydata2)
-    plt.savefig('/home/vid/IJS/Meritve')  #Test path
+def risi(xdata, ydat1, ydat2, ind):
+    plt.plot(xdata, ydat1)
+    plt.plot(xdata, ydat2)
+    plt.xlabel('$Time$ $[s]$', fontsize=22)
+    plt.ylabel('$Count$ $rate$ $[kHz]$', fontsize=22)
+    plt.title('Seq4Amod5, T={0:4.2f}'.format(tempe[ind]))
+    plt.savefig('/home/vid/IJS/Meritve/1611/nov seq4amod5/' + str(a)[:-4] + '.jpg')  #Test path
+    print('Graf ' + str(a)[:-4] + ' shranjen!')
+    plt.close()
 
 
 def povp(data1, data2):
@@ -69,7 +74,21 @@ seznam = os.listdir(pot)
 seznam  = natsort.natsorted(seznam)
 pot1 = tk.askopenfilename(initialdir=pot)
 tempe = beriTemp(pot1)
+indeks = 0
+risanje = True  #Če True, se za vsako temp izriše graf
+
+povprecja = open(pot + '/povprecja.txt', 'w')
 
 for a in seznam:
     if a[-4:] == '.ASC':
-        xdata, ydata = beriInt(pot + '/' + a)
+        xdata, ydata1, ydata2 = beriInt(pot + '/' + a)
+
+        if risanje:
+            risi(xdata, ydata1, ydata2, indeks)
+
+        c = povp(ydata1, ydata2)
+        povprecja.write(str(tempe[indeks]) + ',' + str(c) + '\n')
+        indeks += 1
+
+povprecja.close()
+
