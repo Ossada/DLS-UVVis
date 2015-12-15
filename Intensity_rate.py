@@ -1,7 +1,7 @@
 __author__ = 'vid'
 
 import natsort
-import tkinter as tk
+import tkinter.filedialog as tk
 import os
 import matplotlib.pyplot as plt
 
@@ -49,6 +49,6 @@ def risi(xdata, ydata1, ydata2):
 root = tk.Tk()
 root.withdraw()
 
-a = tk.filedialog.askopenfilename(initialdir='/home/vid/IJS/Meritve/1611/')
+a = tk.askopenfilename(initialdir='/home/vid/IJS/Meritve/1611/')
 test = beriInt(a)
 risi(test[0], test[1], test[2])

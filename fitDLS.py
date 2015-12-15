@@ -5,7 +5,7 @@ import lmfit as lm
 import matplotlib.pyplot as plt
 from matplotlib.patches import *
 import natsort
-import tkinter as tk
+import tkinter.filedialog as tk
 
 
 def beri(poti):
@@ -88,7 +88,7 @@ def risanje2(st):
 
 root = tk.Tk()
 root.withdraw()
-pot = tk.filedialog.askdirectory(initialdir='/media/vid/DLS Data/VidS/seq4Amod3')
+pot = tk.askdirectory(initialdir='/media/vid/DLS Data/VidS/seq4Amod3')
 seznam = os.listdir(pot)
 seznam = natsort.natsorted(seznam)
 
@@ -107,7 +107,7 @@ params.add('f2', value=1.5)
 params.add('s1', value=1, min=0, max=1)
 params.add('s2', value=1, min=0, max=1)
 
-pot1 = tk.filedialog.askopenfilename(initialdir=pot)
+pot1 = tk.askopenfilename(initialdir=pot)
 print(pot1)
 k=-1  #test
 
