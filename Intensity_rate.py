@@ -46,9 +46,30 @@ def risi(xdata, ydata1, ydata2):
     plt.savefig('/home/vid/IJS/Meritve')  #Test path
 
 
+def povp(data1, data2):
+    a = 0
+    if len(data1) == len(data2):
+        for i in range(len(data1)):
+            a += (data1[i] + data2[i])
+        povpre = a/(2*len(data1))
+
+    if len(data1) > len(data2):
+        for i in range(len(data2)):
+            a += (data1[i] + data2[i])
+        povpre = a/(2*len(data2))
+
+    return povpre
+
+
+
 root = tk.Tk()
 root.withdraw()
+pot = tk.askdirectory(initialdir='/home/vid/IJS/Meritve/1611/')
+seznam = os.listdir(pot)
+seznam  = natsort.natsorted(seznam)
+pot1 = tk.askopenfilename(initialdir=pot)
+tempe = beriTemp(pot1)
 
-a = tk.askopenfilename(initialdir='/home/vid/IJS/Meritve/1611/')
-test = beriInt(a)
-risi(test[0], test[1], test[2])
+for a in seznam:
+    if a[-4:] == '.ASC':
+        xdata, ydata = beriInt(pot + '/' + a)
