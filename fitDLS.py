@@ -86,6 +86,8 @@ def risanje2(st):
         plt.plot(xdata, ydata, barve[k])
 
 
+root = tk.Tk()
+root.withdraw()
 pot = filedialog.askdirectory(initialdir='/media/vid/DLS Data/VidS/seq4Amod3')
 seznam = os.listdir(pot)
 seznam = natsort.natsorted(seznam)
@@ -132,8 +134,8 @@ for a in seznam:
             lm.report_fit(params, show_correl=False)
             file.write(a + '\n')
             zapis(tem)
-            # risanje(indeks)
-            risanje2(indeks)
+            risanje(indeks)
+            # risanje2(indeks)
         except:
             print('Z ' + a + ' je neki narobe!')
             plt.plot(xdata, ydata, 'ro')
