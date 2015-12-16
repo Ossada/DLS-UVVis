@@ -4,6 +4,7 @@ import serial
 from datetime import datetime
 import time
 import numpy as np
+import matplotlib.pyplot as plt
 
 
 def pretvorba(x):
@@ -16,6 +17,17 @@ def pretvorba(x):
     t1 = (-r0 * a + np.sqrt(a * a * r0 * r0 - 4 * r0 * b * (r0 - x))) / (2 * r0 * b)
     # Obrnjena formula
     return round(t1, 3)
+
+
+def risi(t, tem):
+    plt.scatter(t, tem)
+    plt.show()
+
+risanje = True
+
+if risanje:
+    plt.ion()
+    fig = plt.figure()
 
 
 ser = serial.Serial()
@@ -37,7 +49,7 @@ a = bytes(a, 'utf-8')
 i = 0
 t = time.time()
 # Začetni čas
-ime = 'Temperatura_n' + str(datetime.now().date())
+ime = 'Temperatura_' + str(datetime.now().date())
 print(ime)
 file = open(ime + '.txt', 'w')
 
@@ -65,6 +77,9 @@ try:
         # pomnoženo s 100 ker je podatek v kOhm (za 10x prevelik kot bi moral biti)
         file.write(str(pretvorba(temp * 100)) + ' ' + str(minute) + '\n')
 
+        if risanje:
+            risi(minute, pretvorba(temp*100))
+
         if time.time() - t > 1200*60:
         # Zajemanje podatkov se ustavi na dva načina, ctrl+C v komandni vrstici ali pa po
         # določenem času, ki ga podamo v zgornji vrstici (v sekundah)
@@ -72,8 +87,13 @@ try:
             file.close()
             break
 
-        time.sleep(10)
+        time.sleep(5)
+        plt.pause(0.001)
 
 except KeyboardInterrupt:
     ser.close()
     file.close()
+
+if risanje:
+    plt.savefig('/home/vid/IJS/test.jpg')
+    plt.close()
