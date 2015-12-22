@@ -63,7 +63,7 @@ def risanje(i):
     plt.xlabel('$\\tau$ $[ms]$', fontsize=22)
     plt.ylabel('$g^{(2)}(\\tau)-1$', fontsize=22)
     plt.ylim(0, 1.1)
-    plt.title('$0.5mM$' + ' ' + '$Seq4Amod3,$' + '$T={0:4.2f}$'.format(temp[i]))
+    plt.title('$0.5mM$' + ' ' + '$Seq4Amod35,$' + '$T={0:4.2f}$'.format(temp[i]))
     text = '$y_{0}=%.4f$\n$j_{d}=%.4f$\n$A=%.4f$\n$f_{1}=%.4f$\n$f_{2}=%.4f$\n$s_{1}=%.4f$\n$s_{2}=%.4f$' \
           % (float(tem[1][0]), float(tem[2][0]), float(tem[0][0]), float(tem[3][0]),
              float(tem[4][0]), float(tem[5][0]), float(tem[6][0]))
@@ -88,16 +88,14 @@ def risanje2(st):
 
 root = tk.Tk()
 root.withdraw()
-pot = tk.askdirectory(initialdir='/media/vid/DLS Data/VidS/seq4Amod3')
+pot = tk.askdirectory(initialdir='/media/vid/DLS DATA/seq4Amod35')
 seznam = os.listdir(pot)
 seznam = natsort.natsorted(seznam)
-
 fji = []
 fjierr = []
 serije = {}
 temp = []
 indeks = -1
-
 params = lm.Parameters()
 params.add('A', value=0.01)
 params.add('y0', value=0)
@@ -106,7 +104,6 @@ params.add('f1', value=430, min=0)
 params.add('f2', value=1.5)
 params.add('s1', value=1, min=0, max=1)
 params.add('s2', value=1, min=0, max=1)
-
 pot1 = tk.askopenfilename(initialdir=pot)
 print(pot1)
 k=-1  #test

@@ -20,6 +20,9 @@ def beriInt(poti):
                 break
         for line in file:
             temp = line.strip().split('\t')
+
+            if '"StandardDeviation"' in temp:
+                break
             time.append(float(temp[0]))
             intensity1.append(float(temp[1]))
             intensity2.append(float(temp[2]))
@@ -82,7 +85,7 @@ def risiPovp(x, y):
     plt.xlabel('$Temperature$ $[^{o}C]$', fontsize=22)
     plt.ylabel('$Average$ $count$ $rate$ $[kHz]$')
     plt.savefig(pot + '/povprecje.jpg')
-    plt.close
+    plt.close()
 
 root = tk.Tk()
 root.withdraw()
