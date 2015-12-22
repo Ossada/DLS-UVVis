@@ -5,7 +5,7 @@ from matplotlib.patches import *
 import os
 
 
-pot = filedialog.askdirectory(initialdir='/media/vid/DLS Data/VidS/Uv vis/seq4Amod3 0.5mM/0.2 inkrement')
+pot = filedialog.askdirectory(initialdir='/media/vid/DLS DATA/')
 
 seznam = os.listdir(pot)
 di = {}
