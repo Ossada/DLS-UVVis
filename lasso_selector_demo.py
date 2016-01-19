@@ -70,17 +70,46 @@ class SelectFromCollection(object):
 
 if __name__ == '__main__':
     import matplotlib.pyplot as plt
+    import os
+    from tkinter import filedialog
 
     plt.ion()
-    data = np.random.rand(100, 2)
 
-    subplot_kw = dict(xlim=(0, 1), ylim=(0, 1), autoscale_on=False)
+    root = filedialog.Tk()
+    root.withdraw()
+    pot = filedialog.askdirectory(initialdir='/media/vid/DLS DATA/')
+
+    seznam = os.listdir(pot)
+    di = {}
+    temperatura = []
+    absor = []
+    # print(seznam)
+
+    for a in seznam:
+        if a[-4:] == '.txt':
+            key = a.split('.')[0]
+            # print('nutr')
+            # try:
+            with open(pot + '//' + a, encoding='windows-1250') as file:
+                next(file)
+                for line in file:
+                    temp = line.split(',')
+                    temperatura.append(float(temp[0]))
+                    absor.append(float(temp[1]))
+                di[key] = ([temperatura, absor])
+            # except:
+            #     print(a)
+            temperatura = []
+            absor = []
+
+    subplot_kw = dict(xlim=(10, 90), ylim=(0.95, 1.3), autoscale_on=False)
     fig, ax = plt.subplots(subplot_kw=subplot_kw)
 
-    pts = ax.scatter(data[:, 0], data[:, 1], s=80)
+    pts = ax.scatter(di['SEG1'][0], di['SEG1'][1])
     selector = SelectFromCollection(ax, pts)
 
     plt.draw()
+    plt.pause(0.01)
 
     raw_input('Press any key to accept selected points')
     print("Selected points:")

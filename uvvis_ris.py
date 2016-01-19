@@ -30,7 +30,7 @@ for a in seznam:
         temperatura = []
         absor = []
 
-print (di)
+# print (di)
 # print(di)
 seznam = list(di.keys())
 
@@ -39,10 +39,10 @@ try:
     plt.plot(di['SEG1'][0], di['SEG1'][1], 'r')
     plt.plot(di['OHL'][0], di['OHL'][1], 'b')
     plt.plot(di['SEG2'][0], di['SEG2'][1], color='#ff6400')
-    tex = '$c=1mM$ $Seq4Amod5$ $+$' + '\n' '$10mM$ $NaPi$ $+$ $100mM$ $NaCl$' +\
-        '\n' + '$\\lambda = 600 nm$'
+    tex = '$c=0.5mM$ $Seq4Amod35$ $+$' + '\n' '$10mM$ $NaPi$ $+$ $100mM$ $NaCl$' +\
+        '\n' + '$\\lambda = 295 nm$'
     props = dict(boxstyle='round', facecolor='wheat', alpha=0.5)
-    ax.text(0.40, 0.90, tex, transform=ax.transAxes, fontsize=14,
+    ax.text(0.2, 0.2, tex, transform=ax.transAxes, fontsize=14,
             verticalalignment='top', bbox=props)
     plt.xlabel('$Temperatura$ $[^{\\circ}]$')
     plt.ylabel('$Absorbcija$')
@@ -57,7 +57,7 @@ for ne in di:
     for i in range(len(di[ne][1])-1):
         vmes = abs(di[ne][1][i+1] - di[ne][1][i])
 
-        if vmes > 0.01:
+        if vmes > 0.017:
             try:
                 ods = (di[ne][1][i+1] + di[ne][1][i+2])/2 -(di[ne][1][i] + di[ne][1][i-1])/2
                 tocka = i
@@ -77,6 +77,7 @@ for ne in di:
 try:
     plt.plot(di['SEG1'][0], di['SEG1'][1], 'y')
     plt.plot(di['OHL'][0], di['OHL'][1], 'b')
+    plt.plot(di['SEG2'][0], di['SEG2'][1], 'r')
     plt.xlim(5, 100)
     plt.xlabel('$Temperature$ $[^{\\circ}C]$')
     plt.ylabel('$Absorbtion$')
