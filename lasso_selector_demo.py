@@ -109,7 +109,7 @@ if __name__ == '__main__':
     selector = SelectFromCollection(ax, pts)
 
     plt.draw()
-    plt.pause(0.01)
+    plt.pause(0.0001)
 
     raw_input('Press any key to accept selected points')
     print("Selected points:")

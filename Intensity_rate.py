@@ -81,7 +81,8 @@ def beriParam(potk):
     return cas, count
 
 def risiPovp(x, y):
-    plt.plot(x, y)
+    plt.plot(x, y, 'o')
+    # plt.xlim(20, 85)
     plt.xlabel('$Temperature$ $[^{o}C]$', fontsize=22)
     plt.ylabel('$Average$ $count$ $rate$ $[kHz]$')
     plt.savefig(pot + '/povprecje.jpg')
@@ -89,7 +90,7 @@ def risiPovp(x, y):
 
 root = tk.Tk()
 root.withdraw()
-pot = tk.askdirectory(initialdir='/home/vid/IJS/Meritve/1611/')
+pot = tk.askdirectory(initialdir='/home/vid/Namizje')
 seznam = os.listdir(pot)
 seznam  = natsort.natsorted(seznam)
 pot1 = tk.askopenfilename(initialdir=pot)
